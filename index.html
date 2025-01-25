@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MTL101</title>
+    <style>
+        body {
+            background-image: url('https://imgs.search.brave.com/veemZ7bpeX3eQ6Nd-MU_5_MyeKB4CHzGo_-aZJx5JFM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNy8x/MC8zMS8xNy80NC9j/aGVycmllcy0yOTA1/OTY0XzY0MC5qcGc');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 5px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: colorChange 5s linear infinite;
+        }
+    
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: rgb(0, 0, 0);
+            background-color: #62a4e9;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    
+        .button:hover {
+            background-color: #0056b3;
+        }
+    
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+    
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s;
+        }
+    
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        th, td {
+            padding: 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+    
+        th {
+            background-color: #f4f4f4;
+        }
+    
+        td {
+            border: 1px solid #ddd;
+        }
+    
+        li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #de830c;
+        }
+        h2 {
+            text-align: center;
+            color: #b49f9f;
+        }
+        h3 {
+            text-align: center;
+            color: #b49f9f;
+        }
+    
+        th {
+            text-align: center;
+        }
+    
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        p {
+            text-align: center;
+            color: #ea3b3b;
+        }
+    </style>
+    
+    <script>
+        // Function to open the popup
+        function showPopup(message) {
+            const modal = document.getElementById("popup-modal");
+            const modalMessage = document.getElementById("modal-message");
+            modalMessage.innerText = message;
+            modal.style.display = "block";
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            const modal = document.getElementById("popup-modal");
+            modal.style.display = "none";
+        }
+    </script>
+</head>
+<body >
+    <h1> <image src="https://jwalamukhi.iitd.ac.in/images/Jwala_logo_extra_small_2.png" ></image>MTL101</h1>
+
+    <!-- Table Structure -->
+    <table>
+        <thead>
+            <tr>
+                <th align="center">Tutorials</th>
+                <th align="center">Lectures</th>
+                <th align="center">Extra Resources</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- Tutorials Column -->
+                <td>
+                    <ul>
+                        <li><button class="button" onclick="showPopup('Tutorial 1: https://web.iitd.ac.in/~ritumoni/Tutorial%201%20mtl101.pdf')">Tutorial 1</button></li>
+                        <li><button class="button" onclick="showPopup('Tutorial 2: https://web.iitd.ac.in/~ritumoni/Tutorial%202%20mtl101.pdf')">Tutorial 2</button></li>
+                        <li><button class="button" onclick="showPopup('Tutorial 3: https://web.iitd.ac.in/~ritumoni/Tutorial%203%20mtl101.pdf')">Tutorial 3</button></li>
+                        <li><button class="button" onclick="showPopup('Tutorial 4: https://web.iitd.ac.in/~ritumoni/tutorial%204.pdf')">Tutorial 4</button></li>
+                        <li><button class="button" onclick="showPopup('Tutorial 5: https://web.iitd.ac.in/~ritumoni/tutorial%205.pdf')">Tutorial 5</button></li>
+                        <li><button class="button" onclick="showPopup('Tutorial 6: https://web.iitd.ac.in/~ritumoni/tutorial%206%20mtl101.pdf')">Tutorial 6</button></li>
+                    </ul>
+                </td>
+                <!-- Lectures Column -->
+                <td>
+                    <ul>
+                        <li><button class="button" onclick="showPopup('Lecture 1 to 5: https://web.iitd.ac.in/~ritumoni/chapter1.pdf')">Lecture 1 to 5</button></li>
+                        <li><button class="button" onclick="showPopup('Lecture 6: https://web.iitd.ac.in/~ritumoni/lecture%206.pdf')">Lecture 6</button></li>
+                        <li><button class="button" onclick="showPopup('Lecture 7 to 8: https://web.iitd.ac.in/~ritumoni/lecture%207%20&%208.pdf')">Lecture 7 to 8</button></li>
+                        <li><button class="button" onclick="showPopup('Lecture 9 to 10: https://web.iitd.ac.in/~ritumoni/lecture%209%20&%2010.pdf')">Lecture 9 to 10</button></li>
+                        <li><button class="button" onclick="showPopup('Lecture 11 to 12: https://web.iitd.ac.in/~ritumoni/lecture%2011%20&%2012.pdf')">Lecture 11 to 12</button></li>
+                        <li><button class="button" onclick="showPopup('Lecture 13 to 14: https://web.iitd.ac.in/~ritumoni/lecture%2013%20&%2014.pdf')">Lecture 13 to 14</button></li>
+                        <li><button class="button" onclick="showPopup('Lecture 15 to 16: https://web.iitd.ac.in/~ritumoni/lecture%2015%20and%2016.pdf')">Lecture 15 to 16</button></li>
+                        <li><button class="button" onclick="showPopup('Lecture 17 to 18: https://web.iitd.ac.in/~ritumoni/lecture%2017%20&%2018.pdf')">Lecture 17 to 18</button></li>
+                    </ul>
+                </td>
+                <!-- Extra Resources Column -->
+                <td>
+                    <ul>
+                        <!-- Minor 1 -->
+                        <li class="dropdown">
+                        <a href=" https://web.iitd.ac.in/~ritumoni/minor%201%20(2014%20aug).pdf" class="button">minor1 2014</a></button>
+                            <div class="dropdown-content">
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q1M1-aug-2014.jpeg" class="button">Q1</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q2M1-aug-2014.jpeg" class="button">Q2</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q3M1-aug-2014.jpeg" class="button">Q3</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q4M1-aug-2014.jpeg" class="button">Q4</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q5M1-aug-2014.jpeg" class="button">Q5</a>
+                            </div>
+                        </li>
+                        
+                        <!-- Minor 2 -->
+                        <li class="dropdown">
+                            <a href =  'https://web.iitd.ac.in/~ritumoni/minor%202%20(2014%20Sept).pdf' class="button">minor2 2014</a></button>
+                            <div class="dropdown-content">
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q1M2-oct2014.jpeg" class="button">Q1</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q2M2-oct-2014.jpeg" class="button">Q2</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q3M2-oct-2014.jpeg" class="button">Q3</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q4M2-oct-2014.jpeg" class="button">Q4</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q5M2-oct-2014.jpeg" class="button">Q5</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q6M2-oct-2014.jpeg" class="button">Q6</a>
+                            </div>
+                        </li>
+                        
+                        <!-- Major -->
+                        <li class="dropdown">
+                            <a href = ' https://web.iitd.ac.in/~ritumoni/major%20(2014,%20november).pdf' class="button">major 2014</a></button>
+                            <div class="dropdown-content">
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q1%20Major%20Nov%202014.jpeg" class="button">Q1</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q2%20Major%20Nov%202014.jpeg.jpeg" class="button">Q2</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q3%20Major%20Nov%202014.jpeg" class="button">Q3</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q4%20Major%20Nov%202014.jpeg" class="button">Q4</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q5%20Major%20Nov%202014.jpeg" class="button">Q5</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q6%20Major%20Nov%202014.jpeg" class="button">Q6</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q6b%20Major%20Nov%202014.jpeg" class="button">Q6b</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q7%20Major%20Nov%202014.jpeg" class="button">Q7</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q8%20Major%20Nov%202014.jpeg" class="button">Q8</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q9%20Major%20Nov%202014.jpeg" class="button">Q9</a>
+                                <a href="https://web.iitd.ac.in/~ritumoni/Q10%20Major%20Nov%202014.jpeg" class="button">Q10</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+                
+            </tr>
+            <tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        <h3>Course Announcements:</h3>
+                        <h2>There is no announcement yet. 😉</h2>
+                    </td>
+                </tr>
+                
+                          
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+        <h3>DEVELOPED BY MONIL </h3>
+        <p> <a href="mailto:monilsavaliya416@gmail.com">FOR ANY CHANGES CONTACT : MONIL</a></p>
+        
+        <p>© 2025 </p>
+    </footer>
+
+    <!-- Modal Popup -->
+    <div id="popup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+</body>
+</html>
