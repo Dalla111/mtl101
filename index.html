@@ -38,6 +38,44 @@
             text-decoration: none;
             cursor: pointer;
         }
+        /* Existing styles unchanged */
+
+        .bottom-button {
+        position: absolute;
+        bottom: 20px; /* Adjust this value if you want more space from the bottom */
+        left: 10%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        font-size: 16px;
+        color: rgb(255, 255, 255); /* White text */
+        background-color: #1aafe0; /* New button color (red) */
+        border: none;
+        border-radius: 5px;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+        }
+        .new-button {
+        position: absolute;
+        bottom: 20px; /* Adjust this value if you want more space from the bottom */
+        left: 95%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        font-size: 16px;
+        color: rgb(255, 255, 255); /* White text */
+        background-color: #1aafe0; /* New button color (red) */
+        border: none;
+        border-radius: 5px;
+        text-align: right;
+        text-decoration: none;
+        cursor: pointer;
+        }
+
+
+        .bottom-button:hover {
+        background-color: #d32f2f; /* Darker red on hover */
+        }
+
     
         .button:hover {
             background-color: #0056b3;
@@ -150,6 +188,7 @@
             text-align: center;
             color: #ea3b3b;
         }
+        
     </style>
     
     <script>
@@ -271,6 +310,8 @@
         </tbody>
     </table>
     <footer>
+        <a href="#" class="bottom-button">Home</a>
+        <a href="#" class="new-button">Explore more pyqs</a>
         <h3>DEVELOPED BY MONIL </h3>
         <p> <a href="mailto:monilsavaliya416@gmail.com">FOR ANY CHANGES CONTACT : MONIL</a></p>
         
