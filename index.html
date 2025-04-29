@@ -1,301 +1,395 @@
- <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>MTL101</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTL101 Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            background-image: url('https://imgs.search.brave.com/veemZ7bpeX3eQ6Nd-MU_5_MyeKB4CHzGo_-aZJx5JFM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNy8x/MC8zMS8xNy80NC9j/aGVycmllcy0yOTA1/OTY0XzY0MC5qcGc');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            margin: 0;
-            padding: 0;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
-        .border {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 5px solid transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            animation: colorChange 5s linear infinite;
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: rgb(0, 0, 0);
-            background-color: #62a4e9;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        
+        .card-hover {
+            transition: all 0.3s ease;
         }
-
-        .button:hover {
-            background-color: #0056b3;
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-
-        .bottom-button, .new-button {
-            position: absolute;
-            bottom: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: rgb(255, 255, 255);
-            background-color: #1aafe0;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
         }
-
-        .bottom-button {
-            left: 10%;
-            transform: translateX(-50%);
-        }
-
-        .new-button {
-            left: 90%;
-            transform: translateX(-50%);
-        }
-
-        .bottom-button:hover, .new-button:hover {
-            background-color: #d32f2f;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 10px;
-            animation: fadeIn 0.5s;
-        }
-
+        
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover, .close:focus {
-            color: black;
-            text-decoration: none;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            vertical-align: top;
-            font-size: 14px;
-        }
-
-        th {
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-
-        td {
-            border: 1px solid #ddd;
-        }
-
-        ul {
-            padding: 0;
-        }
-
-        li {
-            list-style: none;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #de830c;
-            font-size: 24px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #b49f9f;
-            font-size: 20px;
-        }
-
-        h3 {
-            text-align: center;
-            color: #b49f9f;
-        }
-
-        p {
-            text-align: center;
-            color: #ea3b3b;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            h1, h2, h3 {
-                font-size: 18px;
-            }
-
-            .button {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
-
-            .modal-content {
-                width: 95%;
-            }
-
-            .bottom-button, .new-button {
-                width: 80%;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-
-            th, td {
-                font-size: 12px;
-            }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
         }
     </style>
-
-    <script>
-        // Function to open the popup
-        function showPopup(message) {
-            const modal = document.getElementById("popup-modal");
-            const modalMessage = document.getElementById("modal-message");
-            modalMessage.innerText = message;
-            modal.style.display = "block";
-        }
-
-        // Function to close the popup
-        function closePopup() {
-            const modal = document.getElementById("popup-modal");
-            modal.style.display = "none";
-        }
-    </script>
 </head>
-<body>
-    <h1><a href="https://dalla111.github.io/homepage/" ><img src="https://jwalamukhi.iitd.ac.in/images/Jwala_logo_extra_small_2.png" alt="Logo" ></a>MTL101</h1>
+<body class="min-h-screen bg-gray-100">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="https://dalla111.github.io/homepage/" class="flex items-center">
+                    <img src="https://jwalamukhi.iitd.ac.in/images/Jwala_logo_extra_small_2.png" alt="Logo" class="h-10">
+                    <span class="ml-2 text-xl font-bold">MTL101</span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button onclick="showPopup('Welcome to MTL101 Resources!')" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition">
+                    <i class="fas fa-info-circle mr-2"></i>Help
+                </button>
+                <a href="mailto:monilsavaliya416@gmail.com" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition">
+                    <i class="fas fa-envelope mr-2"></i>Contact
+                </a>
+            </div>
+        </div>
+    </nav>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Tutorials</th>
-                <th>Lectures</th>
-                <th>Extra Resources</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <ul>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/Tutorial%201%20mtl101.pdf" class="button">Tutorial 1</a><a href="https://drive.google.com/file/d/1Nku-jYetqVKUsPiOXsjo_06NG_EE-f0E/view?usp=sharing" class="button">Tutorial 1 solutions</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/Tutorial%202%20mtl101.pdf" class="button">Tutorial 2</a><a href="https://drive.google.com/file/d/15E1QJ7xQwJFwZ1KVd9sMvAcfCPfNLmxD/view?usp=drive_link" class="button">Tutorial 2 solutions</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/Tutorial%203%20mtl101.pdf" class="button">Tutorial 3</a><a href="https://drive.google.com/file/d/1volWbVl33-cdWB38y-7oVs13XVAHqtHH/view?usp=drive_link" class="button">Tutorial 3 solutions</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/tutorial%204.pdf" class="button">Tutorial 4</a><a href="https://drive.google.com/file/d/1PwkNKVMGcXMUgvacN80ORpR6cMeY_o3K/view?usp=drive_link" class="button">Tutorial 4 solutions</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/tutorial%205.pdf" class="button">Tutorial 5</a><a href="https://drive.google.com/file/d/1GuM7gg4fHBWJ3vBQsTDqM9w5DUgCiCY0/view?usp=drive_link" class="button">Tutorial 5 solutions</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/tutorial%206%20mtl101.pdf" class="button">Tutorial 6</a><a href="https://drive.google.com/file/d/1RCqdBFwq-28YojHKZCw8GwSOr6rgwjvQ/view?usp=drive_link" class="button">Tutorial 6 solutions</a></li>
-                    </ul>
-                </td>
-                <td>
-                    <ul><li><a href="https://drive.google.com/drive/folders/1uXZ_cXhdmUODLhojHjvqj8qKabGM0Dg0?usp=sharing" class="button">current lecture notes</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/chapter1.pdf" class="button">Lecture 1 to 5</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/lecture%206.pdf" class="button">Lecture 6</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/lecture%207%20&%208.pdf" class="button">Lecture 7 to 8</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/lecture%209%20&%2010.pdf" class="button">Lecture 9 to 10</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/lecture%2011%20&%2012.pdf" class="button">Lecture 11 to 12</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/lecture%2013%20&%2014.pdf" class="button">Lecture 13 to 14</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/lecture%2015%20and%2016.pdf" class="button">Lecture 15 to 16</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/lecture%2017%20&%2018.pdf" class="button">Lecture 17 to 18</a></li>
-                     <li><a href="https://drive.google.com/drive/folders/1gOPT69kKLoF1IExBuavVdz02VI2gO8gz" class="button">Biplab sir notes</a></li>
-                         <li><a href="https://drive.google.com/drive/folders/1iycmGikake2P1Bg6yHC2ZBqk6mE8bi9F?usp=drive_link" class="button">2021  sem 2 lecture notes</a></li>
-                         
-                    </ul>
-                </td>
-                <td>
-                    <ul>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/minor%201%20(2014%20aug).pdf" class="button">Minor 1 (2014)</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/minor%202%20(2014%20Sept).pdf" class="button">Minor 2 (2014)</a></li>
-                        <li><a href="https://web.iitd.ac.in/~ritumoni/major%20(2014,%20november).pdf" class="button">Major (2014)</a></li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" style="text-align: center;">
-                    <h3>Course Announcements:</h3>
-                    <h2>There is no announcement yet. 😉</h2>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="text-center mb-12 fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 glow">MTL101 Course Resources</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">All tutorials, lecture notes, and exam materials in one place for easy access</p>
+        </section>
 
-    <footer>
-        <h3>DEVELOPED BY MONIL</h3>
-        <p><a href="mailto:monilsavaliya416@gmail.com">FOR ANY CHANGES CONTACT: MONIL</a></p>
-        <p>&copy; 2025</p>
+        <!-- Resources Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <!-- Tutorials Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover fade-in" style="animation-delay: 0.1s">
+                <div class="gradient-bg p-4 text-white">
+                    <h2 class="text-2xl font-bold flex items-center">
+                        <i class="fas fa-book-open mr-3"></i>Tutorials
+                    </h2>
+                </div>
+                <div class="p-6">
+                    <ul class="space-y-3">
+                        <li class="flex flex-col space-y-2">
+                            <a href="https://web.iitd.ac.in/~ritumoni/Tutorial%201%20mtl101.pdf" class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Tutorial 1</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1Nku-jYetqVKUsPiOXsjo_06NG_EE-f0E/view?usp=sharing" class="bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Solutions</span>
+                                <i class="fas fa-check-circle"></i>
+                            </a>
+                        </li>
+                        <li class="flex flex-col space-y-2">
+                            <a href="https://web.iitd.ac.in/~ritumoni/Tutorial%202%20mtl101.pdf" class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Tutorial 2</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/15E1QJ7xQwJFwZ1KVd9sMvAcfCPfNLmxD/view?usp=drive_link" class="bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Solutions</span>
+                                <i class="fas fa-check-circle"></i>
+                            </a>
+                        </li>
+                        <li class="flex flex-col space-y-2">
+                            <a href="https://web.iitd.ac.in/~ritumoni/Tutorial%203%20mtl101.pdf" class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Tutorial 3</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1volWbVl33-cdWB38y-7oVs13XVAHqtHH/view?usp=drive_link" class="bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Solutions</span>
+                                <i class="fas fa-check-circle"></i>
+                            </a>
+                        </li>
+                        <li class="flex flex-col space-y-2">
+                            <a href="https://web.iitd.ac.in/~ritumoni/tutorial%204.pdf" class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Tutorial 4</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1PwkNKVMGcXMUgvacN80ORpR6cMeY_o3K/view?usp=drive_link" class="bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Solutions</span>
+                                <i class="fas fa-check-circle"></i>
+                            </a>
+                        </li>
+                        <li class="flex flex-col space-y-2">
+                            <a href="https://web.iitd.ac.in/~ritumoni/tutorial%205.pdf" class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Tutorial 5</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1GuM7gg4fHBWJ3vBQsTDqM9w5DUgCiCY0/view?usp=drive_link" class="bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Solutions</span>
+                                <i class="fas fa-check-circle"></i>
+                            </a>
+                        </li>
+                        <li class="flex flex-col space-y-2">
+                            <a href="https://web.iitd.ac.in/~ritumoni/tutorial%206%20mtl101.pdf" class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Tutorial 6</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1RCqdBFwq-28YojHKZCw8GwSOr6rgwjvQ/view?usp=drive_link" class="bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Solutions</span>
+                                <i class="fas fa-check-circle"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lectures Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover fade-in" style="animation-delay: 0.2s">
+                <div class="gradient-bg p-4 text-white">
+                    <h2 class="text-2xl font-bold flex items-center">
+                        <i class="fas fa-chalkboard-teacher mr-3"></i>Lectures
+                    </h2>
+                </div>
+                <div class="p-6">
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="https://drive.google.com/drive/folders/1uXZ_cXhdmUODLhojHjvqj8qKabGM0Dg0?usp=sharing" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Current Lecture Notes</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/chapter1.pdf" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Lecture 1 to 5</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/lecture%206.pdf" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Lecture 6</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/lecture%207%20&%208.pdf" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Lecture 7 to 8</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/lecture%209%20&%2010.pdf" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Lecture 9 to 10</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/lecture%2011%20&%2012.pdf" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Lecture 11 to 12</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/lecture%2013%20&%2014.pdf" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Lecture 13 to 14</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/lecture%2015%20and%2016.pdf" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Lecture 15 to 16</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/lecture%2017%20&%2018.pdf" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Lecture 17 to 18</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/drive/folders/1gOPT69kKLoF1IExBuavVdz02VI2gO8gz" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Biplab Sir Notes</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/drive/folders/1iycmGikake2P1Bg6yHC2ZBqk6mE8bi9F?usp=drive_link" class="bg-purple-100 hover:bg-purple-200 text-purple-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>2021 Sem 2 Notes</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Extra Resources Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover fade-in" style="animation-delay: 0.3s">
+                <div class="gradient-bg p-4 text-white">
+                    <h2 class="text-2xl font-bold flex items-center">
+                        <i class="fas fa-star mr-3"></i>Extra Resources
+                    </h2>
+                </div>
+                <div class="p-6">
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/minor%201%20(2014%20aug).pdf" class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Minor 1 (2014)</span>
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/minor%202%20(2014%20Sept).pdf" class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Minor 2 (2014)</span>
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.iitd.ac.in/~ritumoni/major%20(2014,%20november).pdf" class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-4 py-2 rounded-lg flex items-center justify-between transition">
+                                <span>Major (2014)</span>
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Announcements Section -->
+                    <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                            <i class="fas fa-bullhorn mr-2"></i>Course Announcements
+                        </h3>
+                        <div class="bg-white p-4 rounded-lg shadow-inner">
+                            <p class="text-gray-600 italic">There is no announcement yet. 😉</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="mailto:monilsavaliya416@gmail.com" class="hover:text-blue-200 transition">
+                    <i class="fas fa-envelope fa-lg"></i>
+                </a>
+                </a>
+                <a href="www.linkedin.com/in/monil-savaliya-75b604321" class="hover:text-blue-200 transition">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+            </div>
+            <p class="mb-2">Developed with <i class="fas fa-heart text-red-300"></i> by Monil</p>
+            <p class="text-sm opacity-80">© 2025 MTL101 Resources. All rights reserved.</p>
+        </div>
     </footer>
 
-    <div id="popup-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <p id="modal-message"></p>
+    <!-- Modal -->
+    <div id="popup-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Information</h3>
+                <button onclick="closePopup()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p id="modal-message" class="text-gray-600 mb-4"></p>
+            <div class="flex justify-end">
+                <button onclick="closePopup()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    Got it!
+                </button>
+            </div>
         </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Modal functionality
+        function showPopup(message) {
+            const modal = document.getElementById('popup-modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalMessage = document.getElementById('modal-message');
+            
+            modalMessage.textContent = message;
+            modal.classList.remove('hidden');
+            
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+        
+        function closePopup() {
+            const modal = document.getElementById('popup-modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+        
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Simple search functionality
+        document.getElementById('resource-search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+            
+            if (searchTerm.length < 2) {
+                resultsContainer.classList.add('hidden');
+                return;
+            }
+            
+            // In a real implementation, you would search through your resources
+            // For now, we'll just show a placeholder
+            resultsContainer.innerHTML = `
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <p class="text-blue-800">Search functionality would display results for "${searchTerm}" here.</p>
+                    <p class="text-sm text-blue-600 mt-2">This is a demo. In a full implementation, it would search through all resources.</p>
+                </div>
+            `;
+            resultsContainer.classList.remove('hidden');
+        });
+        
+        // Add animation class to elements as they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
